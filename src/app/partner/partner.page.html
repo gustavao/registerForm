@@ -1,0 +1,78 @@
+<ion-header no-border>
+  <ion-toolbar color="ligth">
+    <ion-row>
+      <ion-col class="log">
+          <img src="../../assets/LOGO.png">
+    </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h3 class="regis">Datos de Invitado</h3>
+<ion-grid>
+
+    <ion-row>
+        <ion-col>
+          <ion-item>
+            <!--<ion-input [disabled]="blockBracelet" placeholder="id Pulsera" [(ngModel)]="idBracelet"></ion-input>-->
+            <ion-input [disabled]="blockBracelet" placeholder="id Pulsera" type="number" [(ngModel)]="idBracelet" (ionInput)="validate($event)"  placeholder="Ingresa Id de Pulsera"></ion-input>
+  
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-datetime [disabled]="validateCode" [(ngModel)]="partnerDateBirth" displayFormat="MMM DD YYYY" max="2001-12-31" placeholder="Fecha de Nacimiento">
+        </ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>¿Fuma?</ion-label>
+        <ion-toggle [disabled]="validateCode" [(ngModel)]="partnerSmoke" color="dark"></ion-toggle>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-input [disabled]="validateCode" placeholder="Nombre" [(ngModel)]="partnerName"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-input [disabled]="validateCode" placeholder="E-mail" [(ngModel)]="partnerEmail"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-input [disabled]="validateCode" type="number" placeholder="Telefono" [(ngModel)]="partnerPhone"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+
+
+  <ion-row>
+    <ion-col text-center>
+      <ion-button fill="outline" color="dark" (click)="closeModal()">Cancelar</ion-button>
+    </ion-col>
+    <ion-col text-center>
+      <ion-button fill="outline" color="dark" (click)="addPartner()" [disabled]="!partnerName || !partnerPhone || !partnerEmail || !partnerDateBirth">Añadir</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

@@ -1,0 +1,60 @@
+<ion-header no-border>
+    <ion-toolbar color="ligth">
+      <ion-row>
+        <ion-col class="log">
+            <img src="../../assets/LOGO.png">
+      </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" offset="4"></ion-col>
+      <ion-col size="4" offset="4">
+  <div >
+
+  <ion-item>
+    <ion-label>Email Address</ion-label>
+    <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Password</ion-label>
+    <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+  </ion-item>
+
+      <div class="btn">
+        <ion-button fill="outline" color="dark" (click)="loginUser()">
+          Entrar
+        </ion-button>
+      </div>
+</div>
+</ion-col>
+<ion-col size="4" offset="4"></ion-col>
+</ion-row>
+</ion-grid>
+
+
+<ion-footer no-border class="foot">  
+    <ion-toolbar color="ligth" >
+      
+        <ion-row>
+            <ion-col>
+        <ul><li>&copy; PHILIP MORRIS INTERNATIONAL MANAGEMENT SA</li></ul>
+              </ion-col>
+            <ion-col class="rig"> 
+                <ul>
+                    
+                    <li><a href="https://es.iqos.com/es">LEGAL</a></li>
+                    <li><a href="https://es.iqos.com/es">PRIVACY NOTICE</a></li>
+                    <li><a href="https://es.iqos.com/es">AVISO DE PRIVACIDAD</a></li>
+              </ul>
+              </ion-col>
+            </ion-row>
+  
+  
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

@@ -1,0 +1,313 @@
+<ion-header no-border>
+  <ion-toolbar color="ligth">
+    <ion-row>
+      <ion-col class="log">
+          <img src="../../assets/LEGO.png">
+    </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<h1 class="regis">REGISTRO</h1>
+<ion-grid fixed>
+  <!---->
+
+<!--<ion-button (click)="in()">+++</ion-button>  BOTON PARA CREAR DATA DE CODES-->
+
+<div *ngIf="!partner">
+
+  <ion-row>
+      <ion-col>
+        <ion-item>
+          <!--<ion-input placeholder="id Pulsera" type="number" [(ngModel)]="search" (ionInput)="validate($event)"  placeholder="Ingresa Id de Pulsera"></ion-input>-->
+          <ion-input [disabled]="blockBracelet" placeholder="id Pulsera" type="number" [(ngModel)]="idBracelet" (ionInput)="validate($event)"  placeholder="Ingresa Id de Pulsera"></ion-input>
+
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-datetime [disabled]="validateCode" [(ngModel)]="userDateBirth" displayFormat="MMM DD YYYY" max="2001-12-31" placeholder="Fecha de Nacimiento"></ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>¿Fumas?</ion-label>
+        <ion-toggle [disabled]="validateCode" [(ngModel)]="smoke" color="dark"></ion-toggle>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-input [disabled]="validateCode" type="text" placeholder="Nombre" [(ngModel)]="userName"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-input [disabled]="validateCode" type="email" placeholder="E-mail" [(ngModel)]="userEmail"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-input [disabled]="validateCode" type="number" placeholder="Telefono" [(ngModel)]="userPhone"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row [hidden]="(!userName || !userPhone || !idBracelet || !userEmail || !userDateBirth) || partner">
+    <!-- <ion-row>-->
+    <ion-col>
+      <ion-item>
+        <ion-label>Añadir Invitado</ion-label>
+        <ion-fab-button color="dark" (click)="createPartner()">+</ion-fab-button>
+        <!-- <ion-toggle [(ngModel)]="partner" color="secondary"></ion-toggle>-->
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</div>
+
+  
+<!---->
+<div [hidden]="!partner">
+<ion-row>
+  <ion-col>
+<ion-card>
+  <span *ngIf="!isEditUser; else elseBlock">
+  <ion-card-header>
+
+    <ion-card-title>
+        <ion-icon name="person" size="large"></ion-icon>&nbsp;
+      <span item-left>{{userName}}</span>&nbsp;
+      <span item-right [hidden]="smoke">
+        <ion-icon name="logo-no-smoking" color="danger"></ion-icon>
+      </span>
+      <span item-right [hidden]="!smoke">
+        <ion-icon src="/assets/icons/smoking.svg" color="success"></ion-icon>
+      </span>
+    </ion-card-title>
+    <ion-icon ios="ios-no-smoking" md="md-no-smoking"></ion-icon>
+    <ion-card-subtitle>Id de Pulsera: {{idBracelet}}</ion-card-subtitle>
+    <ion-card-subtitle>Email: {{userEmail}}</ion-card-subtitle>
+    <ion-card-subtitle>Telefono: {{userPhone}}</ion-card-subtitle>
+    <ion-card-subtitle>Fecha de Nacimiento: {{userDateBirth}}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+
+    <ion-button shape="round" color="secondary" size="small" (click)="editUser()">
+      <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+
+    </ion-button>
+    <!--<ion-button shape="round" color="danger" size="small" (click)="removeUser()">
+      <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+
+    </ion-button>-->
+  </ion-card-content>
+</span>
+<ng-template #elseBlock>
+  <ion-card-header>
+    <ion-card-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            Editar Datos de Usuario
+          </ion-col>
+          <ion-col>
+            <ion-button fill="clear" color="medium" size="small" (click)="isEditUser = false">
+              Cancelar
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button fill="outline" color="success" size="small" (click)="updateUser()">
+              Actualizar
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+      <ion-label><strong>Fecha de Nacimiento</strong></ion-label>
+      <ion-datetime [(ngModel)]="userDateBirth" displayFormat="MMM DD YYYY"
+        placeholder="Fecha de Nacimiento"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label><strong>¿Es Fumador?</strong></ion-label>
+      <ion-toggle [(ngModel)]="smoke" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label><strong>Nombre</strong></ion-label>
+      <ion-input type="text" placeholder="Nombre" [(ngModel)]="userName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><strong>Email</strong></ion-label>
+      <ion-input placeholder="E-mail" [(ngModel)]="userEmail"></ion-input>
+    </ion-item>
+    <!--<ion-item>
+      <ion-label><strong>Id de Pulsera</strong></ion-label>
+      <ion-input placeholder="id Pulsera" [(ngModel)]="idBracelet"></ion-input>
+    </ion-item>-->
+    <ion-item>
+      <ion-label><strong>Telefono</strong></ion-label>
+      <ion-input placeholder="Telefono" [(ngModel)]="userPhone"></ion-input>
+    </ion-item>
+  </ion-card-content>
+</ng-template>
+</ion-card>
+  </ion-col>
+  <ion-col>
+      <ion-card>
+          <span *ngIf="!isEditPartner; else elseBlok">
+            <ion-card-header>
+        
+              <ion-card-title>
+                  <ion-icon name="people" size="large"></ion-icon>&nbsp;
+                <span item-left>{{data.name}}</span>&nbsp;
+                <span item-right [hidden]="data.smoke">
+                  <ion-icon name="logo-no-smoking" color="danger"></ion-icon>
+                </span>
+                <span item-right [hidden]="!data.smoke">
+                  <ion-icon src="/assets/icons/smoking.svg" color="success"></ion-icon>
+                </span>
+              </ion-card-title>
+              <ion-icon ios="ios-no-smoking" md="md-no-smoking"></ion-icon>
+              <ion-card-subtitle>Id de Pulsera: {{data.idBracelet}}</ion-card-subtitle>
+              <ion-card-subtitle>Email: {{data.email}}</ion-card-subtitle>
+              <ion-card-subtitle>Telefono: {{data.phone}}</ion-card-subtitle>
+              <ion-card-subtitle>Fecha de Nacimiento: {{data.birth}}</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+        
+              <ion-button shape="round" color="secondary" size="small" (click)="editPartner()">
+                <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+        
+              </ion-button>
+              <!--<ion-button shape="round" color="danger" size="small" (click)="removePartner()">
+                <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+        
+              </ion-button>-->
+            </ion-card-content>
+          </span>
+          <ng-template #elseBlok>
+            <ion-card-header>
+              <ion-card-title>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                        Editar Datos de Invitado
+                    </ion-col>
+                    <ion-col>
+                      <ion-button fill="clear" color="medium" size="small" (click)="isEditPartner = false">
+                        Cancelar
+                      </ion-button>
+                    </ion-col>
+                    <ion-col>
+                      <ion-button fill="outline" color="success" size="small" (click)="updatePartner()">
+                        Actualizar
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-item>
+                <ion-label><strong>Fecha de Nacimiento</strong></ion-label>
+                <ion-datetime [(ngModel)]="data.birth" displayFormat="MMM DD YYYY"
+                  placeholder="Fecha de Nacimiento"></ion-datetime>
+              </ion-item>
+              <ion-item>
+                <ion-label><strong>Es Fumador</strong></ion-label>
+                <ion-toggle [(ngModel)]="data.smoke" color="secondary"></ion-toggle>
+              </ion-item>
+              <ion-item>
+                <ion-label><strong>Nombre</strong></ion-label>
+                <ion-input type="text" placeholder="Nombre" [(ngModel)]="data.name"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label><strong>Email</strong></ion-label>
+                <ion-input placeholder="E-mail" [(ngModel)]="data.email"></ion-input>
+              </ion-item>
+             <!-- <ion-item>
+                <ion-label><strong>Id de Pulsera</strong></ion-label>
+                <ion-input placeholder="id Pulsera" [(ngModel)]="data.idBracelet"></ion-input>
+              </ion-item>-->
+              <ion-item>
+                <ion-label><strong>Telefono</strong></ion-label>
+                <ion-input placeholder="Telefono" [(ngModel)]="data.phone"></ion-input>
+              </ion-item>
+            </ion-card-content>
+          </ng-template>
+        </ion-card>
+
+    
+
+</ion-col>
+</ion-row>
+</div>
+
+<!---->
+  <ion-row [hidden]="partner">
+    <ion-col text-center>
+      <ion-button fill="outline" color="dark" (click)="createRecord()()"
+        [disabled]="!userName || !userPhone || !idBracelet || !userEmail || !userDateBirth">
+        <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
+        Registrarse
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row [hidden]="!partner || isEditUser  || isEditPartner">
+    <ion-col text-center>
+      <ion-button  fill="outline" color="dark" (click)="confirm()">
+        <ion-icon  size="small" slot="icon-only" name="add"></ion-icon>
+        Confirmar
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+<ion-grid>
+<ion-row>
+  <ion-col>
+    
+  </ion-col>
+</ion-row>
+</ion-grid>
+
+<!--<ion-footer no-border class="foot">  
+<ion-toolbar color="ligth" >
+  
+    <ion-row>
+        <ion-col>
+    <ul><li>&copy; PHILIP MORRIS INTERNATIONAL MANAGEMENT SA</li></ul>
+          </ion-col>
+        <ion-col class="rig"> 
+            <ul>
+                
+                <li><a href="https://es.iqos.com/es">LEGAL</a></li>
+                <li><a href="https://es.iqos.com/es">PRIVACY NOTICE</a></li>
+                <li><a href="https://es.iqos.com/es">AVISO DE PRIVACIDAD</a></li>
+          </ul>
+          </ion-col>
+        </ion-row>
+
+
+</ion-toolbar>
+</ion-footer>-->
+
+</ion-content>

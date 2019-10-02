@@ -6,11 +6,11 @@ const cors = require('cors')({ origin: true });
 const firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG);
 const SENDGRID_API_KEY = ''
 
-sgMail.setApiKey(SENDGRID_API_KEY);
+
 
 const sgMail = require('@sendgrid/mail');
 
-
+sgMail.setApiKey(SENDGRID_API_KEY);
 
 exports.httpEmail = functions.https.onRequest((req, res) => {
 

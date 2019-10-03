@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateUserService } from './../service/create-user.service';
-import { ModalController, AlertController, LoadingController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { PartnerPage } from '../partner/partner.page';
 import { ThanksPage } from '../thanks/thanks.page';
 /*Faltantes --> revisar comentarios
@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
   validateCode=true;
   blockBracelet=false;
   //search: string;
-valid
+  valid
   isEditUser:boolean=false;
   isEditPartner:boolean=false;
   //user: any;
@@ -41,7 +41,8 @@ valid
   partnerId: string;
   userId: string;
 
-  constructor(public loadingController: LoadingController, public alertController: AlertController, private crudService: CreateUserService, public modalController: ModalController) { }
+
+  constructor(public alertController: AlertController, private crudService: CreateUserService, public modalController: ModalController) { }
 
   ngOnInit() {
   }

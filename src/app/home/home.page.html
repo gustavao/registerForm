@@ -55,7 +55,7 @@
   <ion-row>
     <ion-col>
       <ion-item>
-        <ion-input [disabled]="validateCode" type="email" placeholder="E-mail" [(ngModel)]="userEmail"></ion-input>
+        <ion-input pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" required [disabled]="validateCode"  type="email" placeholder="E-mail" [(ngModel)]="userEmail"></ion-input>
       </ion-item>
     </ion-col>
   </ion-row>

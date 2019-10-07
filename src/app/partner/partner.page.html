@@ -33,10 +33,18 @@
 
   <ion-row>
     <ion-col>
-      <ion-item>
-        <ion-label>¿Fuma?</ion-label>
-        <ion-toggle [disabled]="validateCode" [(ngModel)]="partnerSmoke" color="dark"></ion-toggle>
-      </ion-item>
+        <ion-item [disabled]="validateCode">
+            <label>¿Fumas?</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <label>Si
+              <input checked type="radio" name="rad" value="true" [(ngModel)]="smoke">
+            </label>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <label>No
+              <input type="radio" name="rad" value="false" [(ngModel)]="smoke">
+            </label>
+            <!--<ion-toggle [disabled]="validateCode" [(ngModel)]="smoke" color="dark"></ion-toggle>-->
+          </ion-item>
     </ion-col>
   </ion-row>
 
@@ -51,7 +59,7 @@
   <ion-row>
     <ion-col>
       <ion-item>
-        <ion-input [disabled]="validateCode" placeholder="E-mail" [(ngModel)]="partnerEmail"></ion-input>
+        <ion-input pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" required [disabled]="validateCode" placeholder="E-mail" [(ngModel)]="partnerEmail"></ion-input>
       </ion-item>
     </ion-col>
   </ion-row>

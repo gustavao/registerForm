@@ -2,7 +2,7 @@
   <ion-toolbar color="ligth">
     <ion-row>
       <ion-col class="log">
-          <img src="../../assets/LEGO.png">
+          <img src="../../assets/LOGO.png">
     </ion-col>
     </ion-row>
   </ion-toolbar>
@@ -10,6 +10,10 @@
 
 <ion-content padding>
 <h1 class="regis">REGISTRO</h1>
+
+
+
+
 <ion-grid fixed>
   <!---->
 
@@ -18,7 +22,7 @@
 <div *ngIf="!partner">
 
   <ion-row>
-      <ion-col>
+      <ion-col size-xm="12" size-sm="4" offset-sm="4">
         <ion-item>
           <!--<ion-input placeholder="id Pulsera" type="number" [(ngModel)]="search" (ionInput)="validate($event)"  placeholder="Ingresa Id de Pulsera"></ion-input>-->
           <ion-input [disabled]="blockBracelet" placeholder="id Pulsera" type="number" [(ngModel)]="idBracelet" (ionInput)="validate($event)"  placeholder="Ingresa Id de Pulsera"></ion-input>
@@ -28,7 +32,7 @@
     </ion-row>
 
   <ion-row>
-    <ion-col>
+    <ion-col size-xm="12" size-sm="4" offset-sm="4">
       <ion-item>
         <ion-datetime [disabled]="validateCode" [(ngModel)]="userDateBirth" displayFormat="MMM DD YYYY" max="2001-12-31" placeholder="Fecha de Nacimiento"></ion-datetime>
       </ion-item>
@@ -36,16 +40,24 @@
   </ion-row>
 
   <ion-row>
-    <ion-col>
-      <ion-item>
-        <ion-label>¿Fumas?</ion-label>
-        <ion-toggle [disabled]="validateCode" [(ngModel)]="smoke" color="dark"></ion-toggle>
+    <ion-col size-xm="12" size-sm="4" offset-sm="4">
+      <ion-item [disabled]="validateCode">
+        <label>¿Fumas?</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <label>Si
+          <input checked type="radio" name="rad" value="true" [(ngModel)]="smoke">
+        </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <label>No
+          <input type="radio" name="rad" value="false" [(ngModel)]="smoke">
+        </label>
+        <!--<ion-toggle [disabled]="validateCode" [(ngModel)]="smoke" color="dark"></ion-toggle>-->
       </ion-item>
     </ion-col>
   </ion-row>
 
   <ion-row>
-    <ion-col>
+    <ion-col size-xm="12" size-sm="4" offset-sm="4">
       <ion-item>
         <ion-input [disabled]="validateCode" type="text" placeholder="Nombre" [(ngModel)]="userName"></ion-input>
       </ion-item>
@@ -53,7 +65,7 @@
   </ion-row>
 
   <ion-row>
-    <ion-col>
+    <ion-col size-xm="12" size-sm="4" offset-sm="4">
       <ion-item>
         <ion-input pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" required [disabled]="validateCode"  type="email" placeholder="E-mail" [(ngModel)]="userEmail"></ion-input>
       </ion-item>
@@ -61,7 +73,7 @@
   </ion-row>
 
   <ion-row>
-    <ion-col>
+    <ion-col size-xm="12" size-sm="4" offset-sm="4">
       <ion-item>
         <ion-input [disabled]="validateCode" type="number" placeholder="Telefono" [(ngModel)]="userPhone"></ion-input>
       </ion-item>
@@ -70,7 +82,7 @@
 
   <ion-row [hidden]="(!userName || !userPhone || !idBracelet || !userEmail || !userDateBirth) || partner">
     <!-- <ion-row>-->
-    <ion-col>
+    <ion-col size-xm="12" size-sm="4" offset-sm="4">
       <ion-item>
         <ion-label>Añadir Invitado</ion-label>
         <ion-fab-button color="dark" (click)="createPartner()">+</ion-fab-button>
@@ -259,7 +271,7 @@
 </ion-col>
 </ion-row>
 </div>
-
+&nbsp;&nbsp;
 <!---->
   <ion-row [hidden]="partner">
     <ion-col text-center>
@@ -281,15 +293,8 @@
 </ion-grid>
 
 
-<ion-grid>
-<ion-row>
-  <ion-col>
-    
-  </ion-col>
-</ion-row>
-</ion-grid>
 
-<!--<ion-footer no-border class="foot">  
+<ion-footer no-border class="foot">  
 <ion-toolbar color="ligth" >
   
     <ion-row>
@@ -300,14 +305,13 @@
             <ul>
                 
                 <li><a href="https://es.iqos.com/es">LEGAL</a></li>
-                <li><a href="https://es.iqos.com/es">PRIVACY NOTICE</a></li>
-                <li><a href="https://es.iqos.com/es">AVISO DE PRIVACIDAD</a></li>
+                <!--<li><a href="https://es.iqos.com/es">AVISO DE PRIVACIDAD</a></li>-->
           </ul>
           </ion-col>
         </ion-row>
 
 
 </ion-toolbar>
-</ion-footer>-->
+</ion-footer>
 
 </ion-content>

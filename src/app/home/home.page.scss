@@ -9,7 +9,7 @@ ion-content{
 .regis{
     text-align: center;
     color:#969697;
-    
+    font-family:'Noto Serif JP', serif;
 }
 
 .log{
@@ -27,8 +27,7 @@ ul{
 
 li{
     display:inline;
-    padding-left:3px;
-    
+    padding-left:3px;  
 }
 
 
@@ -39,6 +38,4 @@ a{
 .foot{
     font-size: 0.8rem;
     color: #5272a4;
-    bottom: 0;
-    position: absolute;
 }

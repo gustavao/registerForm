@@ -40,14 +40,14 @@ export class AdministrationPage implements OnInit {
 
   ngOnInit() {
     console.log("asdasd",typeof(this.user))
-/*
+
     if (this.authService.userDetails()) {
       this.userEmail = this.authService.userDetails().email;
       //this.viewInfo();
       
     } else {
       this.navCtrl.navigateBack('/admin');
-    }*/
+    }
 //this.searchById("001");
   }
 

@@ -3,11 +3,7 @@ import { CreateUserService } from './../service/create-user.service';
 import { AuthenticationService } from '../authentication.service';
 import { NavController } from '@ionic/angular';
 /*Faltantes --> revisar comentarios
-Busqueda de usuarios
-Mostrar la informacion por pares user partner
------
-Añadir icon para identificar user y partner
-Cambio de contraseña
+Cambio de contraseña 
 Añadir mas administradores
 Descargar Db en csv
 */
@@ -24,6 +20,7 @@ export class AdministrationPage implements OnInit {
   card2=false;
   newVal;
   btnSearch:boolean=true;
+  btn:boolean=true;
 
   user2 = {
     userName: '.',
@@ -132,9 +129,9 @@ export class AdministrationPage implements OnInit {
       }
     }
 
-    searchById(search){
-      this.search='';
-    this.crudService.searchUser(search).subscribe(data => {
+    searchById(){
+      
+    this.crudService.searchUser(this.search).subscribe(data => {
       this.user = data.map(e => {
         
         if( e.payload.doc.data()['type'] == "invited" ){
@@ -215,11 +212,33 @@ export class AdministrationPage implements OnInit {
 
 
       console.log("collection User", this.user);
-
+      if(this.user.length!=0){
+        console.log("entre");
+        this.btn=false;
+      }
+      this.search='';
+      this.btnSearch=true;
     });
+   
     
-
   }
+
+  reset(){
+    this.btn=true;
+    this.card2=false;
+    this.user=undefined;
+    this.user2.userName= '.';
+    this.user2.userPhone= '';
+    this.user2.userEmail= '';
+    this.user2.userDateBirth= '';
+    this.user2.smoke= '';
+    this.user2.idBracelet= '';
+    this.user2.type='';
+    this.user2.id='';
+    this.user2.isEdit= false;
+   }
+
+   
 
 }
 

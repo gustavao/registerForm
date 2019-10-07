@@ -9,12 +9,18 @@
 </ion-header>
 
 <ion-content padding>
-<h1 class="regis">ADMINISTRACION</h1>
+<h1 class="regis">ADMINISTRACIÓN</h1>
 <ion-grid fixed>
+  <ion-row>
+    <ion-col size-xm="12" size-sm="4" offset-sm="4">
   <ion-searchbar [(ngModel)]="search" type="number" (ionInput)="validate($event)"  placeholder="Ingresa Id de Pulsera"></ion-searchbar>
-  
-  <ion-button [disabled]=btnSearch>Validar Código</ion-button>
-
+</ion-col>
+</ion-row>
+<ion-row class="btn">
+<ion-col size-xm="12" size-sm="4" offset-sm="4">
+  <ion-button [disabled]=btnSearch fill="outline" color="dark" (click)="searchById()">Buscar</ion-button>
+</ion-col>
+</ion-row>
   <ion-row>
     <ion-col>
 <ion-card *ngFor="let item of user">
@@ -191,27 +197,36 @@
 </ion-col>
 
 </ion-row>
+
+<ion-row [hidden]="btn">
+    <ion-col text-center>
+      <ion-button  fill="outline" color="dark" (click)="reset()">
+        Aceptar
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
 </ion-grid>
 
 <ion-footer no-border class="foot">  
-  <ion-toolbar color="ligth" >
+    <ion-toolbar color="ligth" >
+      
+        <ion-row>
+            <ion-col>
+        <ul><li>&copy; PHILIP MORRIS INTERNATIONAL MANAGEMENT SA</li></ul>
+              </ion-col>
+            <ion-col class="rig"> 
+                <ul>
+                    
+                    <li><a href="https://es.iqos.com/es">LEGAL</a></li>
+                    <!--<li><a href="https://es.iqos.com/es">AVISO DE PRIVACIDAD</a></li>-->
+              </ul>
+              </ion-col>
+            </ion-row>
     
-      <ion-row>
-          <ion-col>
-      <ul><li>&copy; PHILIP MORRIS INTERNATIONAL MANAGEMENT SA</li></ul>
-            </ion-col>
-          <ion-col class="rig"> 
-              <ul>
-                  
-                  <li><a href="https://es.iqos.com/es">LEGAL</a></li>
-                  <!--<li><a href="https://es.iqos.com/es">AVISO DE PRIVACIDAD</a></li>-->
-            </ul>
-            </ion-col>
-          </ion-row>
-  
-  
-  </ion-toolbar>
-  </ion-footer>
+    
+    </ion-toolbar>
+    </ion-footer>
 </ion-content>
 
 

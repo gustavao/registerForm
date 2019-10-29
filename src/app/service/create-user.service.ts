@@ -12,8 +12,12 @@ export class CreateUserService {
 
    validateCodes(code){
     return this.firestore.collection("codes", ref => ref.where('idBracelet','==',code)).snapshotChanges(); //dasd usuario sin acompañante   001 acompañante
-
+    
    }
+
+   updateCodes(recordID, record) {
+    this.firestore.doc('codes/' + recordID).update(record);
+  }
 
   createDataCodes(record){ // SIRVE PARA CREAR LA DATA DE LOS CODES
    return this.firestore.collection('codes').add(record);

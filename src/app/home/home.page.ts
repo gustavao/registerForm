@@ -40,7 +40,7 @@ export class HomePage implements OnInit {
   partner: boolean = false;
   partnerId: string;
   userId: string;
-
+  codeused:any;
 
   constructor(public alertController: AlertController, private crudService: CreateUserService, public modalController: ModalController) { }
 
@@ -60,24 +60,29 @@ export class HomePage implements OnInit {
 
   validCode(bracelet){
     let ret;
-    this.crudService.validateCodes(bracelet).subscribe(data => {
-
+    
+    let hi=this.crudService.validateCodes(bracelet).subscribe(data => {
+      console.log("registro codigo",data);
+      console.log("registro 0 codigo",data[0].payload.doc.id);
       if(data[0].payload.doc.data()['registered']==false){
         console.log("codigo valido");
         this.presentAlert('valido');
+        this.codeused=data[0].payload.doc.id
         this.valid=false;
       }else{
         console.log("codigo invalido");
-        this.presentAlert('invalido');
+        this.presentAlert('invalido, ponte en contacto con nosotros');
         this.valid=true;
       }
       
       console.log("axulio me desmayo false=valido   true=invalido", data[0].payload.doc.data()['registered']);
       ret=data[0].payload.doc.data()['registered'];
-      
+      //this.crudService.validateCodes(bracelet).unsubscribe();
+      hi.unsubscribe();
+      return ret
 
     });
-    return ret
+    
   }
 
   createRecord() {
@@ -194,11 +199,14 @@ export class HomePage implements OnInit {
   }
 
   async confirm(){
-    this.reset();
+    
     //hacer el envio de correo a user y partner
     //enviar a pag de agradecimineto
     const modal = await this.modalController.create({
-      component: ThanksPage
+      component: ThanksPage,
+      componentProps: {
+      something: this.userEmail
+   }
     });
 
     modal.onDidDismiss().then((dataReturned) => {
@@ -206,7 +214,8 @@ export class HomePage implements OnInit {
         console.log("return", dataReturned);
       }
     });
-
+    this.crudService.updateCodes(this.codeused,{registered:"true"})   
+    this.reset();
     return await modal.present();
   }
 

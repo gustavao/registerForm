@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -8,11 +8,12 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./thanks.page.scss'],
 })
 export class ThanksPage implements OnInit {
+
   
   endpoint = 'https://us-central1-piknik-iqos.cloudfunctions.net/httpEmail';
 
 
-  constructor(private http: HttpClient, private modalController: ModalController) { }
+  constructor(public navParams: NavParams, private http: HttpClient, private modalController: ModalController) { }
   
 
   ngOnInit() {
@@ -20,8 +21,10 @@ export class ThanksPage implements OnInit {
   }
 
   sendEmail() {
+    const something: string = this.navParams.get('something');
+    console.log("se enviara a:",something)
     const data = {
-      toEmail: 'elg.gespindola@gmail.com',
+      toEmail: something,
       toName: 'Jeff Delaney'
     }
 

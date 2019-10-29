@@ -4,7 +4,7 @@ admin.initializeApp();
 
 const cors = require('cors')({ origin: true });
 const firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG);
-const SENDGRID_API_KEY = ''
+const SENDGRID_API_KEY = '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'
 
 
 
@@ -21,13 +21,13 @@ exports.httpEmail = functions.https.onRequest((req, res) => {
 
         const msg = {
             to: toEmail,
-            from: '',
+            from: 'gustavo.espindola@piknikdigital.com.mx',
             subject:  'Hello hello, New Follower',
             // text: `Hey ${toName}. You have a new follower!!! `,
             // html: `<strong>Hey ${toName}. You have a new follower!!!</strong>`,
 
             // custom templates
-            templateId: '',
+            templateId: 'd-e3fc1ef65086482daa16353e7d65fe02',
             substitutionWrappers: ['{{', '}}'],
             substitutions: {
               name: toName
